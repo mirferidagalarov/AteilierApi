@@ -24,23 +24,23 @@ namespace AteilerWebApi.Controllers
         }
 
         [HttpPost]
-        public  IActionResult AddContact(Product product)
+        public  IActionResult Add(Product product)
         {
-            var products = new Product()
-            {
-                ID = product.ID,
-                Name = product.Name,
-                Price= product.Price,
-                Raiting= product.Raiting,
-                Description= product.Description,
-                ImagePath= product.ImagePath,
-                IsFeatured= product.IsFeatured,
-                IsTrending= product.IsTrending,
-                CategoryId= product.CategoryId,
-            };
-             _productService.Add(products);
-            return Ok(products);    
+           
+             _productService.Add(product);
+            return Ok();    
         }
+
+        [HttpPut]
+        public IActionResult Edit(Product product)
+        {
+            
+            _productService.Update(product);
+            return Ok();
+        }
+
+
+        
     }
 }
  
