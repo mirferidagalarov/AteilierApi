@@ -161,3 +161,7 @@ D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\refint\AteilerWebApi.d
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.pdb
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.genruntimeconfig.cache
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\ref\AteilerWebApi.dll
+D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\Autofac.dll
+D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\Autofac.Extensions.DependencyInjection.dll
+D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\AutoMapper.dll

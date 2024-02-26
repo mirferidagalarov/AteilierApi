@@ -39,7 +39,7 @@ namespace Business.Concrete
 
         public IDataResult<HomeBanner> GetById(int id)
         {
-            return new SuccessDataResult<HomeBanner>(_homeBannerDAL.Get(x => x.ID == id));
+            return new SuccessDataResult<HomeBanner>(_homeBannerDAL.GetById(x => x.ID == id));
         }
 
         public IResult Update(HomeBanner homeBanner)

@@ -13,10 +13,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public  class AteilerDbContext : IdentityDbContext<User, Role, int>
     {
-        public AteilerDbContext()
-        {
-
-        }
         public AteilerDbContext(DbContextOptions<AteilerDbContext> options) : base(options)
         {
 
@@ -24,8 +20,21 @@ namespace DataAccess.Concrete.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                var createdDateProperty = entityType.FindProperty("CreatedDate");
+
+                if (createdDateProperty is not null)
+                    createdDateProperty.SetDefaultValueSql("getdate()");
+            }
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

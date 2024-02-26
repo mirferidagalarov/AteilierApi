@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {      
         public int ID { get; set; }
         public int Deleted { get; set; }

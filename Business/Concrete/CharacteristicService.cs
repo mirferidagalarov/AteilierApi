@@ -38,7 +38,7 @@ namespace Business.Concrete
 
         public IDataResult<Characteristic> GetById(int id)
         {
-            return new SuccessDataResult<Characteristic>(_characteristicDAL.Get(x => x.ID == id));
+            return new SuccessDataResult<Characteristic>(_characteristicDAL.GetById(x => x.ID == id));
         }
 
         public IResult Update(Characteristic characteristic)

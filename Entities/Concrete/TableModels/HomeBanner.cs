@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete.TableModels
 {
-    public class HomeBanner:BaseEntity
+    public class HomeBanner:BaseEntity, IEntity
     {
         public string ImagePath { get; set; }
     }

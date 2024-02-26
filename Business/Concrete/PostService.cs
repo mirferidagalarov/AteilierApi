@@ -39,7 +39,7 @@ namespace Business.Concrete
 
         public IDataResult<Post> GetById(int id)
         {
-            return new SuccessDataResult<Post>(_postDAL.Get(x=>x.ID==id));
+            return new SuccessDataResult<Post>(_postDAL.GetById(x=>x.ID==id));
         }
 
         public IResult Update(Post post)

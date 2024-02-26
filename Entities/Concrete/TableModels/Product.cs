@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete.TableModels
 {
-    public class Product : BaseEntity
+    public class Product : BaseEntity, IEntity
     {
         public string Name { get; set; }
         public int Price { get; set; }

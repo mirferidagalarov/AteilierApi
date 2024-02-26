@@ -17,10 +17,27 @@ namespace AteilerWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetAll()
         {
-            var data =_productService.GetAll();
+            var data =_productService.GetAll().Data;
             return Ok(data);
+        }
+
+        [HttpGet("id")]
+        public IActionResult GetId(int id)
+        {
+            var result = _productService.Get(id);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            else
+            {
+                BadRequest();
+            }
+
+            return Ok();
+
         }
 
         [HttpPost]
@@ -36,6 +53,13 @@ namespace AteilerWebApi.Controllers
         {
             
             _productService.Update(product);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            _productService.Delete(id);
             return Ok();
         }
 

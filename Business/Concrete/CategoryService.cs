@@ -39,7 +39,7 @@ namespace Business.Concrete
 
         public IDataResult<Category> GetById(int id)
         {
-            return new SuccessDataResult<Category>(_categoryDAL.Get(x => x.ID == id));
+            return new SuccessDataResult<Category>(_categoryDAL.GetById(x => x.ID == id));
         }
 
         public IResult Update(Category category)

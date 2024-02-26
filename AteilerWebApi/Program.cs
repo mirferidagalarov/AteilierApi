@@ -1,4 +1,8 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Business.DependencyResolvers;
 using DataAccess.Concrete.EntityFramework;
+using DataAccess.Mapper;
 using Entities.Concrete.TableModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +19,11 @@ namespace AteilerWebApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            //builder.Services.AddDbContext<AteilerDbContext>().AddIdentity<User, Role>().AddEntityFrameworkStores<AteilerDbContext>();
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                         .ConfigureContainer<ContainerBuilder>(builder =>
+                         {
+                             builder.RegisterModule(new AutofacBusinessModule());
+                         });
             builder.Services.AddDbContext<AteilerDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("localDb"));
@@ -23,6 +31,8 @@ namespace AteilerWebApi
             });
             builder.Services.AddIdentity<User, Role>()
                           .AddEntityFrameworkStores<AteilerDbContext>();
+            builder.Services.AddAutoMapper(typeof(Automapper));
+
 
             var app = builder.Build();
 

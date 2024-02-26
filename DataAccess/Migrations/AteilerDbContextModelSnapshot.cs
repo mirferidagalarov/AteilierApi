@@ -65,9 +65,14 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Name", "Deleted")
+                        .IsUnique()
+                        .HasDatabaseName("idx_Category_Name_Deleted");
 
                     b.ToTable("Categories");
                 });
@@ -81,13 +86,20 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int>("Deleted")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Name", "Deleted")
+                        .IsUnique()
+                        .HasDatabaseName("idx_Characteristic_Name_Deleted");
 
                     b.ToTable("Characteristics");
                 });
@@ -101,13 +113,20 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int>("Deleted")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Name", "Deleted")
+                        .IsUnique()
+                        .HasDatabaseName("idx_Color_Name_Deleted");
 
                     b.ToTable("Colors");
                 });
@@ -141,14 +160,19 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("Deleted")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
@@ -156,9 +180,13 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Name", "Deleted")
+                        .HasDatabaseName("idx_Post_Name_Deleted");
 
                     b.ToTable("Posts");
                 });
@@ -175,15 +203,19 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Deleted")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("IsFeatured")
                         .HasColumnType("bit");
@@ -193,7 +225,8 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -204,6 +237,9 @@ namespace DataAccess.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("Name", "Deleted")
+                        .HasDatabaseName("idx_Product_Name_Deleted");
 
                     b.ToTable("Products");
                 });
@@ -247,13 +283,20 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int>("Deleted")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Name", "Deleted")
+                        .IsUnique()
+                        .HasDatabaseName("idx_Size_Name_Deleted");
 
                     b.ToTable("Sizes");
                 });
@@ -267,13 +310,20 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int>("Deleted")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Name", "Deleted")
+                        .IsUnique()
+                        .HasDatabaseName("idx_Tag_Name_Deleted");
 
                     b.ToTable("Tags");
                 });
@@ -484,13 +534,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.Characteristic", null)
                         .WithMany()
                         .HasForeignKey("CharacteristicsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.TableModels.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -499,13 +549,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.Color", null)
                         .WithMany()
                         .HasForeignKey("ColorID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.TableModels.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -514,7 +564,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -525,7 +575,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -534,7 +584,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -543,7 +593,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -552,13 +602,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.TableModels.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -567,7 +617,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -576,13 +626,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.TableModels.Size", null)
                         .WithMany()
                         .HasForeignKey("SizeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -591,13 +641,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.TableModels.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.TableModels.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

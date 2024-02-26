@@ -39,7 +39,7 @@ namespace Business.Concrete
 
         public IDataResult<Tag> GetById(int id)
         {
-            return new SuccessDataResult<Tag>(_tagDAL.Get(x => x.ID == id));
+            return new SuccessDataResult<Tag>(_tagDAL.GetById(x => x.ID == id));
         }
 
         public IResult Update(Tag tag)

@@ -26,15 +26,20 @@ namespace Business.Concrete
             return new SuccessResult(CommonOperationMessage.DataAddedSuccesfly);
         }
 
-        public IResult Delete(Product product)
+        public IResult Delete(int id)
         {
-           _productDAL.Update(product);
+            var deleteEntity = _productDAL.GetById(x => x.ID == id);
+            if (deleteEntity is null)
+                return new ErrorResult();
+
+            deleteEntity.Deleted = id;
+            _productDAL.Update(deleteEntity);
             return new SuccessResult(CommonOperationMessage.DataDeletedSuccesfly);
         }
 
         public IDataResult<Product> Get(int id)
         {
-            return new SuccessDataResult<Product>(_productDAL.Get(x => x.ID == id));
+            return new SuccessDataResult<Product>(_productDAL.GetById(x => x.ID == id));
         }
 
         public IDataResult<List<Product>> GetAll()

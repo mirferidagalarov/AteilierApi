@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5A8CKfaavirEn1uannxJpm6SaJbluv9E6CgerRKbrlTAt+KkfFS7ypKmjoKJf+kR4b+9s2mWabhFB0zdYN2Lwg==",
+  "dgSpecHash": "b7RNFts7Qnpot1ncGBPzFEu7JlkpnFmGlf1E91JpBsKKsEiNqzujVRBVBfI5jum8QjAQpSRRcBe80f/czuI19g==",
   "success": true,
   "projectFilePath": "D:\\Programming\\AteilierApi\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.25\\microsoft.aspnetcore.cryptography.internal.6.0.25.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.25\\microsoft.aspnetcore.cryptography.keyderivation.6.0.25.nupkg.sha512",

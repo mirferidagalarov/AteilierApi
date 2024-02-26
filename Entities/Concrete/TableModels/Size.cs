@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete.TableModels
 {
-    public class Size:BaseEntity
+    public class Size:BaseEntity, IEntity
     {
         public string Name { get; set; }
         public List<Product> Products { get; set; }
