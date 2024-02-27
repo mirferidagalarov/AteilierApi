@@ -51,9 +51,10 @@ namespace Business.Concrete
 
         }
 
-        public IDataResult<Color> GetById(int id)
+        public IDataResult<ColorToUpdateDTO> GetById(int id)
         {
-            return new SuccessDataResult<Color>(_colorDAL.GetById(x=>x.ID==id));
+            Color color = _colorDAL.GetById(x=>x.ID==id);
+            return new SuccessDataResult<ColorToUpdateDTO>(_mapper.Map<ColorToUpdateDTO>(color));
         }
 
         public IResult Update(ColorToUpdateDTO colorToUpdateDTO)
