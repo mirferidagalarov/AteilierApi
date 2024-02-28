@@ -32,7 +32,13 @@ namespace AteilerWebApi
             builder.Services.AddIdentity<User, Role>()
                           .AddEntityFrameworkStores<AteilerDbContext>();
             builder.Services.AddAutoMapper(typeof(Automapper));
-
+            builder.Services.AddCors(option =>
+            {
+                option.AddPolicy("cors", policy =>
+                {
+                    policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+                });
+            });
 
             var app = builder.Build();
 
@@ -44,7 +50,7 @@ namespace AteilerWebApi
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("cors");
             app.UseAuthorization();
 
 
