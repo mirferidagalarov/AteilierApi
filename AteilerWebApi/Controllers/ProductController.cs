@@ -33,11 +33,8 @@ namespace AteilerWebApi.Controllers
             }
             else
             {
-                BadRequest();
+               return BadRequest();
             }
-
-            return Ok();
-
         }
 
         [HttpPost]

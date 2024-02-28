@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.Concrete.DTOs.ColorDTOs;
+using Entities.Concrete.DTOs.HomeBannerDTOs;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,19 @@ namespace DataAccess.Mapper
     {
         public Automapper()
         {
+            #region
             CreateMap<Color, ColorToListDTO>().ReverseMap();
             CreateMap<ColorToAddDTO, Color>().ReverseMap();
             CreateMap<ColorToUpdateDTO, Color>().ReverseMap();
+            #endregion
+
+
+            #region
+            CreateMap<HomeBanner, HomeBannerListDTO>().ReverseMap();
+            CreateMap<HomeBannerUpdateDTO, HomeBanner>().ReverseMap();
+            CreateMap<HomeBannerAddDTO, HomeBanner>().ReverseMap();
+            #endregion
+
         }
     }
 }

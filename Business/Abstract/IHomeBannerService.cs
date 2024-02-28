@@ -1,4 +1,5 @@
 ﻿using Core.Helpers.Result.Abstract;
+using Entities.Concrete.DTOs.HomeBannerDTOs;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Business.Abstract
 {
     public interface IHomeBannerService
     {
-        IResult Add(HomeBanner homeBanner);
-        IResult Update(HomeBanner homeBanner);
-        IResult Delete(HomeBanner homeBanner);  
-        IDataResult<List<HomeBanner>> GetAll();
-        IDataResult<HomeBanner> GetById(int id);
+        IResult Add(HomeBannerAddDTO  homeBannerAddDTO);
+        IResult Update(HomeBannerUpdateDTO homeBannerUpdateDTO);
+        IResult Delete(int id);  
+        IDataResult<List<HomeBannerListDTO>> GetAll();
+        IDataResult<HomeBannerUpdateDTO> GetById(int id);
     }
 }

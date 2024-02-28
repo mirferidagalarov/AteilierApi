@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "CKOh+Bq6ERSy2UkcBPIgbb9m6m3eMiCw1vjisojfz/jJr7E24huXWT+pC58NXcG1u7A1vSDSuxcaNUHuXYjapw==",
+  "dgSpecHash": "Oc0Jr63BIkxe4Z8QU58zWGnvtQRtU5kzWLOvaCtKetg5U/R3Ccft4+z9V/95WHITDzCQzPxp4VU9I2VbJKeZWQ==",
   "success": true,
   "projectFilePath": "D:\\Programming\\AteilierApi\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\autofac\\8.0.0\\autofac.8.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\autofac.extensions.dependencyinjection\\9.0.0\\autofac.extensions.dependencyinjection.9.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
-    "C:\\Users\\Lenovo\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.25\\microsoft.aspnetcore.cryptography.internal.6.0.25.nupkg.sha512",

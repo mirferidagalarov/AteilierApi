@@ -165,3 +165,5 @@ D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\Autofac.dll
 D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\Autofac.Extensions.DependencyInjection.dll
 D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\AutoMapper.dll
+D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\CloudinaryDotNet.dll
+D:\Programming\AteilierApi\AteilerWebApi\bin\Debug\net6.0\Newtonsoft.Json.dll

@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Validator.Colors;
+using Core.Extensions;
 using Core.Helpers.Constant;
 using Core.Helpers.Result.Abstract;
 using Core.Helpers.Result.Concrete;
+using Core.Validation;
 using DataAccess.Abstarct;
 using Entities.Concrete.DTOs.ColorDTOs;
 using Entities.Concrete.TableModels;
@@ -26,6 +29,10 @@ namespace Business.Concrete
         public IResult Add(ColorToAddDTO  colorToAddDTO)
         {
             Color color=_mapper.Map<Color>(colorToAddDTO);
+            var validationResult = ValidationTool.Validate(new ColorValidation(), color, out List<ValidationErrorModel> errors);
+            if (!validationResult)
+                return new ErrorResult(errors.ValidationErrorMessagesWithNewLine());
+
             _colorDAL.Add(color);
             _colorDAL.SaveChanges();
           return new SuccessResult(CommonOperationMessage.DataAddedSuccesfly);
@@ -51,6 +58,11 @@ namespace Business.Concrete
 
         }
 
+        public IDataResult<List<Color>> GetAll(int pageNumber, int pageSize)
+        {
+            return new SuccessDataResult<List<Color>>(_colorDAL.GetAll(pageNumber, pageSize, filter: x => x.Deleted == Constant.NotDeleted));
+        }
+
         public IDataResult<ColorToUpdateDTO> GetById(int id)
         {
             Color color = _colorDAL.GetById(x=>x.ID==id);
@@ -60,6 +72,10 @@ namespace Business.Concrete
         public IResult Update(ColorToUpdateDTO colorToUpdateDTO)
         {
             Color color = _mapper.Map<Color>(colorToUpdateDTO);
+            var validationResult = ValidationTool.Validate(new ColorValidation(), color, out List<ValidationErrorModel> errors);
+            if (!validationResult)
+                return new ErrorResult(errors.ValidationErrorMessagesWithNewLine());
+
             _colorDAL.Update(color);
             _colorDAL.SaveChanges();
             return new SuccessResult(CommonOperationMessage.DataUpdateSuccesfly);

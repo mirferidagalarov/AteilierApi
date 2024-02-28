@@ -14,7 +14,8 @@ namespace Business.Abstract
         IResult Add(ColorToAddDTO colorToAddDTO);
         IResult Update(ColorToUpdateDTO colorToUpdateDTO);
         IResult Delete(int id);
-        IDataResult<List<ColorToListDTO>> GetAll();
+        IDataResult<List<ColorToListDTO>> GetAll(); 
         IDataResult<ColorToUpdateDTO> GetById(int id);
+        IDataResult<List<Color>> GetAll(int pageNumber, int pageSize);
     }
 }

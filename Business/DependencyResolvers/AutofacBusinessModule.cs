@@ -26,8 +26,9 @@ namespace Business.DependencyResolvers
             builder.RegisterType<ColorService>().As<IColorService>();
             #endregion
 
-            #region
-            //builder.RegisterType<Mapper>().As<IMapper>();
+            #region HomeBanner
+            builder.RegisterType<HomeBannerEFDAL>().As<IHomeBannerDAL>();   
+            builder.RegisterType<HomeBannerService>().As<IHomeBannerService>(); 
             #endregion
 
             base.Load(builder);

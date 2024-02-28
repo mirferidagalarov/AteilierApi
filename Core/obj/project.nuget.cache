@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Fb7Tp6qdDVyCuxfmGb8pI43rtnWYaTbRwEg7OREt2/nIBiN/ufIu2OjN9S1hkH1KdyiKCsEVFsylW6WFV4mDKw==",
+  "dgSpecHash": "uIm+D9NntJ9i4OiqcYYpmRLmG2UkuW3KNW+fV8d9dTfJxR5ibOVG8kvq4gKxnqX8//pJM3Dgps+86zemP3jFJQ==",
   "success": true,
   "projectFilePath": "D:\\Programming\\AteilierApi\\Core\\Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.25\\microsoft.entityframeworkcore.6.0.25.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.25\\microsoft.entityframeworkcore.abstractions.6.0.25.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.25\\microsoft.entityframeworkcore.analyzers.6.0.25.nupkg.sha512",
