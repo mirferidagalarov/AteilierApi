@@ -28,9 +28,18 @@ namespace Business.DependencyResolvers
 
             #region HomeBanner
             builder.RegisterType<HomeBannerEFDAL>().As<IHomeBannerDAL>();   
-            builder.RegisterType<HomeBannerService>().As<IHomeBannerService>(); 
+            builder.RegisterType<HomeBannerService>().As<IHomeBannerService>();
             #endregion
 
+            #region Size
+            builder.RegisterType<SizeEFDAL>().As<ISizeDAL>();   
+            builder.RegisterType<SizeService>().As<ISizeService>();
+            #endregion
+
+            #region Category
+            builder.RegisterType<CategoryEFDAL>().As<ICategoryDAL>();
+            builder.RegisterType<CategoryService>().As<ICategoryService>();
+            #endregion
             base.Load(builder);
         }
     }
