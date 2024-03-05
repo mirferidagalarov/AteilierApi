@@ -1,4 +1,4 @@
-﻿using Entities.Concrete.TableModels;
+﻿using Entities.Concrete.TableModels ;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public  class AteilerDbContext : IdentityDbContext<User, Role, int>
+    public  class AteilerDbContext:DbContext
     {
         public AteilerDbContext(DbContextOptions<AteilerDbContext> options) : base(options)
         {
@@ -27,6 +27,7 @@ namespace DataAccess.Concrete.EntityFramework
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
+
             foreach (var entityType in builder.Model.GetEntityTypes())
             {
                 var createdDateProperty = entityType.FindProperty("CreatedDate");
@@ -35,13 +36,42 @@ namespace DataAccess.Concrete.EntityFramework
                     createdDateProperty.SetDefaultValueSql("getdate()");
             }
 
+            //builder.Entity<AteilerUser>(e =>
+            //{
+            //    e.ToTable("Users", "Membership");
+            //});
+            //builder.Entity<AteilerRole>(e =>
+            //{
+            //    e.ToTable("Roles", "Membership");
+            //});
+            //builder.Entity<AteilerUserRole>(e =>
+            //{
+            //    e.ToTable("UserRoles", "Membership");
+            //});
+            //builder.Entity<AteilerUserClaim>(e =>
+            //{
+            //    e.ToTable("UserClaims", "Membership");
+            //});
+            //builder.Entity<AteilerRoleClaim>(e =>
+            //{
+            //    e.ToTable("RoleClaims", "Membership");
+            //});
+            //builder.Entity<AteilerUserLogin>(e =>
+            //{
+            //    e.ToTable("UserLogins", "Membership");
+            //});
+            //builder.Entity<AteilerUserToken>(e =>
+            //{
+            //    e.ToTable("UserTokens", "Membership");
+            //});
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
         }
 
-    
+     
 
 
 

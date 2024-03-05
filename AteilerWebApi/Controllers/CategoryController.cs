@@ -2,6 +2,7 @@
 using Business.Concrete;
 using Entities.Concrete.DTOs.CategoryDTOs;
 using Entities.Concrete.DTOs.ColorDTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace AteilerWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;

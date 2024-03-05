@@ -3,8 +3,13 @@ using Autofac.Extensions.DependencyInjection;
 using Business.DependencyResolvers;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Mapper;
-using Entities.Concrete.TableModels;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
+using System.Text;
 
 namespace AteilerWebApi
 {
@@ -18,19 +23,88 @@ namespace AteilerWebApi
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Ateiler API", Version = "v1" });
+                options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference=new OpenApiReference
+                            {
+                                Type=ReferenceType.SecurityScheme,
+                                Id=JwtBearerDefaults.AuthenticationScheme
+                            },
+                            Scheme="Oauth2",
+                            Name=JwtBearerDefaults.AuthenticationScheme,
+                            In=ParameterLocation.Header
+                        },
+                        new List<string>()
+                    }
+                });
+            });
+
+            builder.Services.AddIdentityCore<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("Ateiler")
+                .AddEntityFrameworkStores<AteilerDbContextAuth>()
+                .AddDefaultTokenProviders();
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime=true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                        ValidAudience = builder.Configuration["Jwt:Audience"],
+
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                            .GetBytes(builder.Configuration["Jwt:Key"]))
+                        
+                    });
+                
             builder.Services.AddSwaggerGen();
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
                          .ConfigureContainer<ContainerBuilder>(builder =>
                          {
                              builder.RegisterModule(new AutofacBusinessModule());
                          });
+
             builder.Services.AddDbContext<AteilerDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("localDb"));
 
             });
-            builder.Services.AddIdentity<User, Role>()
-                          .AddEntityFrameworkStores<AteilerDbContext>();
+            //builder.Services.AddIdentity<AteilerUser, AteilerRole>()
+            //              .AddEntityFrameworkStores<AteilerDbContext>();
+
+            builder.Services.AddDbContext<AteilerDbContextAuth>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("localDbAuth"));
+            });
             builder.Services.AddAutoMapper(typeof(Automapper));
             builder.Services.AddCors(option =>
             {
@@ -51,7 +125,11 @@ namespace AteilerWebApi
 
             app.UseHttpsRedirection();
             app.UseCors("cors");
+
+            app.UseAuthentication();
             app.UseAuthorization();
+
+
 
 
             app.MapControllers();

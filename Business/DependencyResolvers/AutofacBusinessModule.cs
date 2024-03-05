@@ -40,6 +40,10 @@ namespace Business.DependencyResolvers
             builder.RegisterType<CategoryEFDAL>().As<ICategoryDAL>();
             builder.RegisterType<CategoryService>().As<ICategoryService>();
             #endregion
+
+            #region Token
+            builder.RegisterType<TokenRepository>().As<Abstract.ITokenRepository>();
+            #endregion
             base.Load(builder);
         }
     }
