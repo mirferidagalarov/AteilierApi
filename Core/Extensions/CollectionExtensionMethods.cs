@@ -1,4 +1,6 @@
-﻿using Core.Validation;
+﻿using Core.Helpers.Result.Concrete;
+using Core.Validation;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +11,10 @@ namespace Core.Extensions
 {
     public static class CollectionExtensionMethods
     {
-        public static string ValidationErrorMessagesWithNewLine(this List<ValidationErrorModel> model)
+        public static ErrorDataResult<List<string>> ValidationErrorMessagesWithNewLine(this ValidationResult validationResult)
         {
-            StringBuilder sb = new();
-            foreach (var error in model)
-            {
-                sb.Append(error.ErrorMessage);
-                sb.Append(Environment.NewLine);
-            }
 
-            return sb.ToString();
+                return new ErrorDataResult<List<string>>(validationResult.Errors.Select(e => e.PropertyName).ToList(), validationResult.Errors.Select(e => e.ErrorMessage).ToList());
         }
 
     }

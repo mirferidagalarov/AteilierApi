@@ -24,14 +24,14 @@ namespace Business.Concrete
             _sizeDAL = sizeDAL;
             _mapper = mapper;   
         }
-
+        
         public IResult Add(SizeToAddDTO sizeToAddDTO)
         {
             Size size = _mapper.Map<Size>(sizeToAddDTO);
-
-            var validationResult = ValidationTool.Validate(new SizeValidation(), size, out List<ValidationErrorModel> errors);
-            if (!validationResult)
-                return new ErrorResult(errors.ValidationErrorMessagesWithNewLine());
+            var _validator = new SizeValidation();
+            var validationResult = _validator.Validate(size);
+            if (!validationResult.IsValid)
+                return new ErrorDataResult<List<string>>(validationResult.Errors.Select(e => e.PropertyName).ToList(), validationResult.Errors.Select(e => e.ErrorMessage).ToList());
 
             _sizeDAL.Add(size);
             _sizeDAL.SaveChanges();

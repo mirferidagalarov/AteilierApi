@@ -34,7 +34,7 @@ namespace Business.Concrete
             Category category = _mapper.Map<Category>(categoryToAddDTO);
             var validationResult = ValidationTool.Validate(new CategoryValidation(), category, out List<ValidationErrorModel> errors);
             if (!validationResult)
-                return new ErrorResult(errors.ValidationErrorMessagesWithNewLine());
+                return errors.;
 
             _categoryDAL.Add(category);
             _categoryDAL.SaveChanges();

@@ -22,7 +22,7 @@ namespace Core.Validation
                 {
                     model = new ValidationErrorModel();
                     model.ErrorMessage = error.ErrorMessage;
-                    model.ErrorCode = error.ErrorCode;
+                    model.PropertyName = error.PropertyName;
                     errors.Add(model);
                 }
             }
