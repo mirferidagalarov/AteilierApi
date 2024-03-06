@@ -261,3 +261,5 @@ C:\Users\user\Desktop\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.p
 C:\Users\user\Desktop\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.genruntimeconfig.cache
 C:\Users\user\Desktop\AteilierApi\AteilerWebApi\obj\Debug\net6.0\ref\AteilerWebApi.dll
 >>>>>>> Cemo
+D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.Properties.Resources.resources
+D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.csproj.GenerateResource.cache
