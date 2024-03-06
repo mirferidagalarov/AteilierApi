@@ -10,6 +10,7 @@ namespace Business.Messages
     {
         internal readonly static string SizeNameLength = "Name must be maximum 10 symbols";
         internal readonly static string SizeNameNoEmpty = "Name can not be empty";
+        internal readonly static string SizeNameUnique = "You have size with same name";
         public static readonly string SizeAddedSuccesfully = "SizeAddedSuccesfully";
         public static readonly string SizeDeletedSuccesfully = "SizeDeletedSuccesfully";
         public static readonly string SizeUpdateSuccesfully = "SizeUpdateSuccesfully";
