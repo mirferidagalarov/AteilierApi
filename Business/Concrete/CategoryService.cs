@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.Validator.Categories;
+using Business.Validator.Sizes;
 using Core.Extensions;
 using Core.Helpers.Constant;
 using Core.Helpers.Result.Abstract;
@@ -13,6 +14,7 @@ using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +36,8 @@ namespace Business.Concrete
             Category category = _mapper.Map<Category>(categoryToAddDTO);
             var validationResult = ValidationTool.Validate(new CategoryValidation(), category, out List<ValidationErrorModel> errors);
             if (!validationResult)
-                return errors.;
+                return errors.ValidationErrorMessagesWithNewLine();
+                
 
             _categoryDAL.Add(category);
             _categoryDAL.SaveChanges();
@@ -70,7 +73,7 @@ namespace Business.Concrete
             Category category = _mapper.Map<Category>(categoryToUpdateDTO);
             var validationResult = ValidationTool.Validate(new CategoryValidation(), category, out List<ValidationErrorModel> errors);
             if (!validationResult)
-                return new ErrorResult(errors.ValidationErrorMessagesWithNewLine());
+                return errors.ValidationErrorMessagesWithNewLine();
 
             _categoryDAL.Update(category);
             _categoryDAL.SaveChanges();

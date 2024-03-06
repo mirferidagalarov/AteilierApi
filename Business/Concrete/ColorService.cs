@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Validator.Categories;
 using Business.Validator.Colors;
+using Business.Validator.Sizes;
 using Core.Extensions;
 using Core.Helpers.Constant;
 using Core.Helpers.Result.Abstract;
@@ -31,7 +33,7 @@ namespace Business.Concrete
             Color color=_mapper.Map<Color>(colorToAddDTO);
             var validationResult = ValidationTool.Validate(new ColorValidation(), color, out List<ValidationErrorModel> errors);
             if (!validationResult)
-                return new ErrorResult(errors.ValidationErrorMessagesWithNewLine());
+                return errors.ValidationErrorMessagesWithNewLine();
 
             _colorDAL.Add(color);
             _colorDAL.SaveChanges();
@@ -74,7 +76,7 @@ namespace Business.Concrete
             Color color = _mapper.Map<Color>(colorToUpdateDTO);
             var validationResult = ValidationTool.Validate(new ColorValidation(), color, out List<ValidationErrorModel> errors);
             if (!validationResult)
-                return new ErrorResult(errors.ValidationErrorMessagesWithNewLine());
+                return errors.ValidationErrorMessagesWithNewLine();
 
             _colorDAL.Update(color);
             _colorDAL.SaveChanges();

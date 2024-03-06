@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Validator.Categories;
 using Business.Validator.Colors;
 using Business.Validator.Sizes;
 using Core.Extensions;
@@ -28,10 +29,10 @@ namespace Business.Concrete
         public IResult Add(SizeToAddDTO sizeToAddDTO)
         {
             Size size = _mapper.Map<Size>(sizeToAddDTO);
-            var _validator = new SizeValidation();
-            var validationResult = _validator.Validate(size);
-            if (!validationResult.IsValid)
-                return new ErrorDataResult<List<string>>(validationResult.Errors.Select(e => e.PropertyName).ToList(), validationResult.Errors.Select(e => e.ErrorMessage).ToList());
+            
+            var validationResult = ValidationTool.Validate(new SizeValidation(), size, out List<ValidationErrorModel> errors);
+            if (!validationResult)
+                return errors.ValidationErrorMessagesWithNewLine();
 
             _sizeDAL.Add(size);
             _sizeDAL.SaveChanges();
@@ -68,7 +69,7 @@ namespace Business.Concrete
             Size size = _mapper.Map<Size>(sizeToUpdateDTO);
             var validationResult = ValidationTool.Validate(new SizeValidation(), size, out List<ValidationErrorModel> errors);
             if (!validationResult)
-                return new ErrorResult(errors.ValidationErrorMessagesWithNewLine());
+                return errors.ValidationErrorMessagesWithNewLine();
 
             _sizeDAL.Update(size);
             _sizeDAL.SaveChanges();

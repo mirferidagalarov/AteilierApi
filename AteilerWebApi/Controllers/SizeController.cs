@@ -43,10 +43,6 @@ namespace AteilerWebApi.Controllers
         public IActionResult Add(SizeToAddDTO sizeToUpdateDTO)
         {
             var result = _sizeService.Add(sizeToUpdateDTO);
-            if (!result.Success)
-            {
-                return Ok(result);
-            }
             return Ok(result);
         }
 
