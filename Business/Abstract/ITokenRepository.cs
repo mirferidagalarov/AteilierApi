@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete.TableModels
+namespace Business.Abstract
 {
-    public class User : IdentityUser<int>
+    public interface ITokenRepository
     {
-
+        string CreateJwtToke(IdentityUser user,List<string> roles);
     }
 }
