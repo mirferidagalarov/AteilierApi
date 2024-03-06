@@ -44,15 +44,15 @@ namespace AteilerWebApi.Controllers
         [HttpPost]
         public IActionResult Add(CategoryToAddDTO  categoryToAddDTO)
         {
-            _categoryService.Add(categoryToAddDTO);
-            return Ok();
+            var result = _categoryService.Add(categoryToAddDTO);
+            return Ok(result);
         }
 
         [HttpPut]
         public IActionResult Update(CategoryToUpdateDTO  categoryToUpdateDTO)
         {
-            _categoryService.Update(categoryToUpdateDTO);
-            return Ok();
+            var result = _categoryService.Update(categoryToUpdateDTO);
+            return Ok(result);
         }
 
         [HttpDelete]

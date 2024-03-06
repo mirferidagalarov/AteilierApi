@@ -42,8 +42,8 @@ namespace AteilerWebApi.Controllers
         [HttpPost]
         public IActionResult Add(SizeToAddDTO sizeToUpdateDTO)
         {
-            _sizeService.Add(sizeToUpdateDTO);
-            return Ok(CommonOperationMessage.DataAddedSuccesfly);
+            var result = _sizeService.Add(sizeToUpdateDTO);
+            return Ok(result);
         }
 
         [HttpPut]
