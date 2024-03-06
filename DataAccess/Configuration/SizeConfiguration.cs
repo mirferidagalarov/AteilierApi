@@ -13,7 +13,7 @@ namespace DataAccess.Configuration
     {
         public void Configure(EntityTypeBuilder<Size> builder)
         {
-            builder.Property(x=>x.Name).HasMaxLength(50);
+            builder.Property(x=>x.Name).HasMaxLength(10);
             builder.Property(x => x.Deleted).HasDefaultValue<int>(0);
             builder.HasIndex(x => new { x.Name, x.Deleted }).IsUnique().HasDatabaseName("idx_Size_Name_Deleted");
 

@@ -15,8 +15,7 @@ namespace Business.Validator.Sizes
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage(SizeMessage.SizeNameNoEmpty)
-                .MinimumLength(3).WithMessage(SizeMessage.SizeNameMinLength)
-                .MaximumLength(150).WithMessage(SizeMessage.SizeNameMaxLength);
+                .Length(1, 10).WithMessage(SizeMessage.SizeNameLength);
         }
     }
 }

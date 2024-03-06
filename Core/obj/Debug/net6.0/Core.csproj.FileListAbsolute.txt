@@ -22,3 +22,15 @@ D:\Programming\AteilierApi\Core\obj\Debug\net6.0\Core.dll
 D:\Programming\AteilierApi\Core\obj\Debug\net6.0\refint\Core.dll
 D:\Programming\AteilierApi\Core\obj\Debug\net6.0\Core.pdb
 D:\Programming\AteilierApi\Core\obj\Debug\net6.0\ref\Core.dll
+C:\Users\user\Desktop\AteilierApi\Core\bin\Debug\net6.0\Core.deps.json
+C:\Users\user\Desktop\AteilierApi\Core\bin\Debug\net6.0\Core.dll
+C:\Users\user\Desktop\AteilierApi\Core\bin\Debug\net6.0\Core.pdb
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\Core.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\Core.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\Core.AssemblyInfo.cs
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\Core.dll
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\refint\Core.dll
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\Core.pdb
+C:\Users\user\Desktop\AteilierApi\Core\obj\Debug\net6.0\ref\Core.dll
