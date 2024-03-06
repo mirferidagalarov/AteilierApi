@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
 namespace AteilerWebApi
@@ -128,9 +127,6 @@ namespace AteilerWebApi
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-
-
 
             app.MapControllers();
 
