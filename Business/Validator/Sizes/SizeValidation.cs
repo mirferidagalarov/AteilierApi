@@ -1,4 +1,5 @@
 ﻿using Business.Messages;
+using DataAccess.Abstarct;
 using Entities.Concrete.TableModels;
 using FluentValidation;
 using System;
@@ -11,11 +12,19 @@ namespace Business.Validator.Sizes
 {
     public class SizeValidation:AbstractValidator<Size>
     {
-        public SizeValidation()
+        private readonly ISizeDAL _sizeDAL;
+        public SizeValidation(ISizeDAL sizeDAL)
         {
+            _sizeDAL = sizeDAL;
+
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage(SizeMessage.SizeNameNoEmpty)
                 .Length(1, 10).WithMessage(SizeMessage.SizeNameLength);
+
         }
+            private bool BeUniqueName(string name)
+            {
+                return !_sizeDAL.GetAll(p => p.Name == name && p.Deleted == 0).Any();
+            }
     }
 }
