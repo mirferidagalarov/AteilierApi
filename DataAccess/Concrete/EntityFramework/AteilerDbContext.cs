@@ -69,10 +69,11 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("server=DESKTOP-HM4BSSR\\SQLEXPRESS;database=Atelier;integrated security=true;");
+            }
         }
-
-     
-
 
 
         public DbSet<Category> Categories { get; set; } 

@@ -1,14 +1,8 @@
 ﻿using Autofac;
-using AutoMapper;
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstarct;
 using DataAccess.Concrete.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.DependencyResolvers
 {
@@ -41,8 +35,23 @@ namespace Business.DependencyResolvers
             builder.RegisterType<CategoryService>().As<ICategoryService>();
             #endregion
 
+            #region Characteristic
+            builder.RegisterType<CharacteristicEFDAL>().As<ICharacteristicDAL>();
+            builder.RegisterType<CharacteristicService>().As<ICharacteristicService>();
+            #endregion
+
+            #region Tag
+            builder.RegisterType<TagEFDAL>().As<ITagDAL>();
+            builder.RegisterType<TagService>().As<ITagService>();
+            #endregion
+
+            #region Post
+            builder.RegisterType<PostEFDal>().As<IPostDAL>();   
+            builder.RegisterType<PostService>().As<IPostService>(); 
+            #endregion
+
             #region Token
-            builder.RegisterType<TokenRepository>().As<Abstract.ITokenRepository>();
+            builder.RegisterType<TokenRepository>().As<ITokenRepository>();
             #endregion
             base.Load(builder);
         }

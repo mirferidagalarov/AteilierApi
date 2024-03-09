@@ -1,8 +1,13 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
+using Business.Validator.Posts;
+using Core.Extensions;
 using Core.Helpers.Constant;
 using Core.Helpers.Result.Abstract;
 using Core.Helpers.Result.Concrete;
+using Core.Validation;
 using DataAccess.Abstarct;
+using Entities.Concrete.DTOs.PostDTOs;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -15,36 +20,61 @@ namespace Business.Concrete
     public class PostService : IPostService
     {
         private readonly IPostDAL _postDAL;
-        public PostService(IPostDAL postDAL)
+        private readonly IMapper _mapper;
+        public PostService(IPostDAL postDAL,IMapper mapper)
         {
             _postDAL = postDAL;
+            _mapper = mapper;   
         }
 
-        public IResult Add(Post post)
+        public IResult Add(PostToAddDTO postToAddDTO)
         {
+            Post post=_mapper.Map<Post>(postToAddDTO);
+            var validationResult = ValidationTool.Validate(new PostValidation(), post, out List<ValidationErrorModel> errors);
+            if (!validationResult)
+                return errors.ValidationErrorMessagesWithNewLine();
+
            _postDAL.Add(post);
+            _postDAL.SaveChanges();
             return new SuccessResult(CommonOperationMessage.DataDeletedSuccesfly);
         }
 
-        public IResult Delete(Post post)
+        public IResult Delete(int id)
         {
-            _postDAL.Update(post);
+            var deleteEntity = _postDAL.GetById(x => x.ID == id);
+            if (deleteEntity is null)
+                return new ErrorResult();
+
+            deleteEntity.Deleted = id;
+
+            _postDAL.Update(deleteEntity);
+            _postDAL.SaveChanges();
             return new SuccessResult(CommonOperationMessage.DataDeletedSuccesfly);
         }
 
-        public IDataResult<List<Post>> GetAll()
+        public IDataResult<List<PostToListDTO>> GetAll()
         {
-            return new SuccessDataResult<List<Post>>(_postDAL.GetAll().Where(x=>x.Deleted==Constant.NotDeleted).ToList());
+           List<Post> posts=_postDAL.GetAll(x=>x.Deleted==Constant.NotDeleted);
+            return new SuccessDataResult<List<PostToListDTO>>(_mapper.Map<List<PostToListDTO>>(posts));
         }
 
-        public IDataResult<Post> GetById(int id)
+        public IDataResult<PostToUpdateDTO> GetById(int id)
         {
-            return new SuccessDataResult<Post>(_postDAL.GetById(x=>x.ID==id));
+            Post post = _postDAL.GetById(x => x.ID == id && x.Deleted == Constant.NotDeleted);
+            return new SuccessDataResult<PostToUpdateDTO>(_mapper.Map<PostToUpdateDTO>(post));
         }
 
-        public IResult Update(Post post)
+        public IResult Update(PostToUpdateDTO postToUpdateDTO)
         {
+            Post post=_mapper.Map<Post>(postToUpdateDTO);   
+
+            var validateResult=ValidationTool.Validate(new PostValidation(),post,out List<ValidationErrorModel> errors);
+            if (!validateResult)
+                return errors.ValidationErrorMessagesWithNewLine();
+
+
             _postDAL.Update(post);
+            _postDAL.SaveChanges();
             return new SuccessResult(CommonOperationMessage.DataUpdateSuccesfly);
 
         }

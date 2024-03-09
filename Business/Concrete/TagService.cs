@@ -1,8 +1,13 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
+using Business.Validator.Tags;
+using Core.Extensions;
 using Core.Helpers.Constant;
 using Core.Helpers.Result.Abstract;
 using Core.Helpers.Result.Concrete;
+using Core.Validation;
 using DataAccess.Abstarct;
+using Entities.Concrete.DTOs.TagDTOs;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -15,36 +20,59 @@ namespace Business.Concrete
     public class TagService : ITagService
     {
         private readonly ITagDAL _tagDAL;
-        public TagService(ITagDAL tagDAL)
+        private readonly IMapper _mapper;
+        public TagService(ITagDAL tagDAL,IMapper mapper)
         {
             _tagDAL = tagDAL;
+            _mapper = mapper;   
         }
 
-        public IResult Add(Tag tag)
+        public IResult Add(TagToAddDTO tagToAddDTO)
         {
-            _tagDAL.Add(tag);   
+            Tag tag = _mapper.Map<Tag>(tagToAddDTO);
+            var validationResult = ValidationTool.Validate(new TagValidation(), tag, out List<ValidationErrorModel> errors);
+            if (!validationResult)
+                return errors.ValidationErrorMessagesWithNewLine();
+
+            _tagDAL.Add(tag);
+            _tagDAL.SaveChanges();
             return new SuccessResult(CommonOperationMessage.DataAddedSuccesfly);
         }
 
-        public IResult Delete(Tag tag)
+        public IResult Delete(int id)
         {
-            _tagDAL.Update(tag);
+            var deleteEntity = _tagDAL.GetById(x => x.ID == id);
+            if (deleteEntity is null)
+                return new ErrorResult();
+
+            deleteEntity.Deleted = id;
+            _tagDAL.Update(deleteEntity);
+            _tagDAL.SaveChanges();
             return new SuccessResult(CommonOperationMessage.DataDeletedSuccesfly);
         }
 
-        public IDataResult<List<Tag>> GetAll()
+        public IDataResult<List<TagToListDTO>> GetAll()
         {
-           return new SuccessDataResult<List<Tag>>(_tagDAL.GetAll().Where(x=>x.Deleted==Constant.NotDeleted).ToList()); 
+            List<Tag> tagList = _tagDAL.GetAll(x => x.Deleted == Constant.NotDeleted);
+           return new SuccessDataResult<List<TagToListDTO>>(_mapper.Map<List<TagToListDTO>>(tagList)); 
         }
 
-        public IDataResult<Tag> GetById(int id)
+        public IDataResult<TagToUpdateDTO> GetById(int id)
         {
-            return new SuccessDataResult<Tag>(_tagDAL.GetById(x => x.ID == id));
+            Tag tag = _tagDAL.GetById(x => x.ID == id &&x.Deleted==Constant.NotDeleted);
+            return new SuccessDataResult<TagToUpdateDTO>(_mapper.Map<TagToUpdateDTO>(tag));
+
         }
 
-        public IResult Update(Tag tag)
+        public IResult Update(TagToUpdateDTO tagToUpdateDTO)
         {
+            Tag tag=_mapper.Map<Tag>(tagToUpdateDTO);
+            var validateResult=ValidationTool.Validate(new TagValidation(),tag,out List<ValidationErrorModel> errors);
+            if (!validateResult)
+                return errors.ValidationErrorMessagesWithNewLine(); 
+
             _tagDAL.Update(tag);
+            _tagDAL.SaveChanges();
             return new SuccessResult(CommonOperationMessage.DataUpdateSuccesfly);
         }
     }

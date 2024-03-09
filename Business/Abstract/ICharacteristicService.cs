@@ -1,4 +1,5 @@
 ﻿using Core.Helpers.Result.Abstract;
+using Entities.Concrete.DTOs.CharacteristicDTOs;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Business.Abstract
 {
     public interface ICharacteristicService
     {
-        IResult Add(Characteristic characteristic);
-        IResult Update(Characteristic characteristic);
-        IResult Delete(Characteristic characteristic);
-        IDataResult<List<Characteristic>> GetAll();
-        IDataResult<Characteristic> GetById(int id);
+        IResult Add(CharacteristicAddDTO  characteristicAddDTO);
+        IResult Update(CharacteristicUpdateDTO  characteristicUpdateDTO);
+        IResult Delete(int id);
+        IDataResult<List<CharacteristicListDTO>> GetAll();
+        IDataResult<CharacteristicUpdateDTO> GetById(int id);
     }
 }
