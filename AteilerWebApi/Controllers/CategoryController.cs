@@ -45,7 +45,16 @@ namespace AteilerWebApi.Controllers
         public IActionResult Add(CategoryToAddDTO  categoryToAddDTO)
         {
             var result = _categoryService.Add(categoryToAddDTO);
+            if (result.Success)
+            {
+
             return Ok(result);
+            }
+
+            else
+            {
+               BadRequest();
+            }
         }
 
         [HttpPut]
