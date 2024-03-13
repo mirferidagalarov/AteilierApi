@@ -1,4 +1,5 @@
 ﻿using Core.Helpers.Result.Abstract;
+using Entities.Concrete.DTOs.ProductDTOs;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace Business.Abstract
 {
     public interface IProductService
     {
-        IResult Add(Product product);
-        IResult Update(Product product);
+        IResult Add(ProductToAddDTO productToAddDTO);
+        IResult Update(ProductToUpdateDTO productToUpdateDTO);
         IResult Delete(int id);
         IDataResult<List<Product>> GetAll();
         IDataResult<Product> Get(int id);    

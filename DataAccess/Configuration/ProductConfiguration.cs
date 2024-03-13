@@ -17,7 +17,7 @@ namespace DataAccess.Configuration
             builder.Property(x => x.Description).HasMaxLength(500);
             builder.Property(x => x.ImagePath).HasMaxLength(1000);
             builder.Property(x => x.Deleted).HasDefaultValue<int>(0);
-            builder.HasIndex(x => new {x.Name,x.Deleted}).HasDatabaseName("idx_Product_Name_Deleted");
+            builder.HasIndex(x => new {x.Name,x.Deleted}).IsUnique().HasDatabaseName("idx_Product_Name_Deleted");
         }
     }
 }

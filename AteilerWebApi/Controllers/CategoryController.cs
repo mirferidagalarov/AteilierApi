@@ -53,7 +53,7 @@ namespace AteilerWebApi.Controllers
 
             else
             {
-               BadRequest();
+             return  BadRequest();
             }
         }
 

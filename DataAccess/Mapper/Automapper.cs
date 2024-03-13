@@ -4,6 +4,7 @@ using Entities.Concrete.DTOs.CharacteristicDTOs;
 using Entities.Concrete.DTOs.ColorDTOs;
 using Entities.Concrete.DTOs.HomeBannerDTOs;
 using Entities.Concrete.DTOs.PostDTOs;
+using Entities.Concrete.DTOs.ProductDTOs;
 using Entities.Concrete.DTOs.SizeDTOs;
 using Entities.Concrete.DTOs.TagDTOs;
 using Entities.Concrete.TableModels;
@@ -55,6 +56,12 @@ namespace DataAccess.Mapper
             CreateMap<Post, PostToListDTO>().ReverseMap();
             CreateMap<PostToUpdateDTO, Post>().ReverseMap();
             CreateMap<PostToAddDTO, Post>().ReverseMap();
+            #endregion
+
+            #region Product
+            CreateMap<Product, ProductToListDTO>().ReverseMap();
+            CreateMap<ProductToUpdateDTO, Product>().ReverseMap();
+            CreateMap<ProductToAddDTO, Product>().ReverseMap();
             #endregion
         }
     }

@@ -80,7 +80,6 @@ D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.Generate
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.AssemblyInfoInputs.cache
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.AssemblyInfo.cs
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.csproj.CoreCompileInputs.cache
-D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.MvcApplicationPartsAssemblyInfo.cs
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.MvcApplicationPartsAssemblyInfo.cache
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\staticwebassets.build.json
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\staticwebassets.development.json
@@ -91,3 +90,4 @@ D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\refint\AteilerWebApi.d
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.pdb
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.genruntimeconfig.cache
 D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\ref\AteilerWebApi.dll
+D:\Programming\AteilierApi\AteilerWebApi\obj\Debug\net6.0\AteilerWebApi.MvcApplicationPartsAssemblyInfo.cs

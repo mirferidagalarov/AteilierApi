@@ -17,5 +17,9 @@ namespace Entities.Concrete.DTOs.ProductDTOs
         public bool IsFeatured { get; set; }
         public string ImagePath { get; set; }
         public int CategoryId { get; set; }
+        public List<Characteristic> Characteristics { get; set; }
+        public List<Tag> Tags { get; set; }
+        public List<Color> Color { get; set; }
+        public List<Size> Size { get; set; }
     }
 }
