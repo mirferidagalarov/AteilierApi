@@ -70,7 +70,7 @@ namespace AteilerWebApi.Controllers
                         JwtToken = jwtToken
                     };
 
-                    return Ok(jwtToken);
+                    return Ok(response);
                 }
             }
 
