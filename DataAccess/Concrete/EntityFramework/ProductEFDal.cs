@@ -19,5 +19,14 @@ namespace DataAccess.Concrete.EntityFramework
             _context = context;
         }
 
+        public List<Product> GetAllWithProduct(Expression<Func<Product, bool>> predicate = null)
+        {
+            return predicate is null
+                ?
+                _context.Set<Product>().Include(x => x.Category.Name).Include(x=>x.Color).Include(x=>x.Characteristics).Include(x=>x.Size).Include(x=>x.Color).Include(x=>x.Tags).ToList()
+                :
+                _context.Set<Product>().Include(x => x.Category.Name).Include(x => x.Color).Include(x => x.Characteristics).Include(x => x.Size).Include(x => x.Color).Include(x => x.Tags).Where(predicate).ToList();
+        }
+
     }
 }

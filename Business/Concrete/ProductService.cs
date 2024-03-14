@@ -7,6 +7,7 @@ using Core.Helpers.Result.Abstract;
 using Core.Helpers.Result.Concrete;
 using Core.Validation;
 using DataAccess.Abstarct;
+using Entities.Concrete.DTOs.PostDTOs;
 using Entities.Concrete.DTOs.ProductDTOs;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Authorization.Policy;
@@ -52,14 +53,16 @@ namespace Business.Concrete
             return new SuccessResult(CommonOperationMessage.DataDeletedSuccesfly);
         }
 
-        public IDataResult<Product> Get(int id)
+        public IDataResult<ProductToUpdateDTO> Get(int id)
         {
-            return new SuccessDataResult<Product>(_productDAL.GetById(x => x.ID == id));
+            Product product = _productDAL.GetById(x => x.ID == id && x.Deleted == Constant.NotDeleted);
+            return new SuccessDataResult<ProductToUpdateDTO>(_mapper.Map<ProductToUpdateDTO>(product));
         }
 
-        public IDataResult<List<Product>> GetAll()
+        public IDataResult<List<ProductToListDTO>> GetAll()
         {
-           return new SuccessDataResult<List<Product>>(_productDAL.GetAll().Where(x=>x.Deleted ==Constant.NotDeleted).ToList());
+            List<Product> products = _productDAL.GetAll(x => x.Deleted == Constant.NotDeleted);
+            return new SuccessDataResult<List<ProductToListDTO>>(_mapper.Map<List<ProductToListDTO>>(products));
         }
 
         public IResult Update(ProductToUpdateDTO productToUpdateDTO)
